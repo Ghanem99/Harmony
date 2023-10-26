@@ -8,11 +8,11 @@ use App\Models\UserVrTracker;
 
 class UserVrTrackerController extends Controller
 {
-    public function store(User $user) 
+    public function store($id) 
     {
         $tracker = new UserVrTracker();
 
-        $tracker->user_id = $user->id;
+        $tracker->user_id = $id;
         $tracker->score = request('score');
         $tracker->duration = request('duration');
         
