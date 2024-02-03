@@ -3,59 +3,64 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Models\User;
+use App\Helpers\ApiResponse;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-    public function index() 
+    public function index() : JsonResponse
     {
-        return User::all();
+        $users = User::all();
+        $userResource = UserResource::collection($users);
+
+        return ApiResponse::success('Data Retrieved Successfully!', $userResource, 200);
     }
 
-    public function show($id) 
+    public function show(User $user) : JsonResponse
     {
-        return User::find($id);
+        if (!$user) {
+            return ApiResponse::error('User Not Found!', 404);
+        }
+
+        $userResource = new UserResource($user);
+        return ApiResponse::success('User Retrieved Successfully!', $userResource, 200);
+ 
     }
 
-    public function register(Request $request)
+    public function update(User $user, UpdateUserRequest $request) : JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+        try {
+            if (auth()->guard('sanctum')->user()->id !== $user->id) {
+                return ApiResponse::error('Unauthorized action. You cannot update this user.', 403);
+            }
 
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-        ]);
+            $user->update($request->all());
 
-        
+            $updatedUser = User::find($user->id);
 
-        return Response::json([
-            'code' => 1,
-            'message' => 'User registered successfully',
-            'user' => $user,
-        ], 201);
+            $userResource = new UserResource($updatedUser);
+
+            return ApiResponse::success('User Updated Successfully!', $userResource, 200);
+
+        } catch (\Exception $e) {
+            return ApiResponse::error('Failed to update user!', 404);
+        }
     }
 
-    public function update($id) 
+    public function destroy($id) : JsonResponse
     {
-        $user = User::find($id);
-
-        $user->name = request('name');
-        $user->email = request('email');
-        $user->password = request('password');
-        
-        $user->save();
-    }
-
-    public function destroy($id) 
-    {
-        $user = User::find($id);
-        $user->delete();
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            
+            // No return happens here, which is correct for a 204 response
+            return ApiResponse::success('User Deleted Successfully!', null, 204);
+    
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return ApiResponse::error('User Not Found!', 404);
+        }
     }
 }
