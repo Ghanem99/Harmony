@@ -12,7 +12,7 @@ class ApiResponse
             'status' => 'success',
             'message' => $message,
             'data' => $data,
-        ], $statusCode);
+        ]);
     }
 
     public static function error(string $message): JsonResponse

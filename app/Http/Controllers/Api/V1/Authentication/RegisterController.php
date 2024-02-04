@@ -21,7 +21,7 @@ class RegisterController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
         
-        $data = new RegisterResource(['user' => $user]);
+        $data = new RegisterResource($user);
 
         return ApiResponse::success('User Registered Successfully!', $data);
     }
