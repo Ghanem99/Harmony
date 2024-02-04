@@ -12,7 +12,7 @@ use App\Helpers\ApiResponse;
 
 class RegisterController extends Controller
 {
-    public function register(RegisterRequest $request) : JsonResponse
+    public function register(RegisterRequest $request) : RegisterResource
     {
 
         $user = User::create([
@@ -21,8 +21,6 @@ class RegisterController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
         
-        $data = new RegisterResource($user);
-
-        return ApiResponse::success('User Registered Successfully!', $data);
+        return new RegisterResource($user);
     }
 }

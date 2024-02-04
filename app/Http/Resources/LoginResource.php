@@ -7,6 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class LoginResource extends JsonResource
 {
+    public function token()
+    {
+        // You can use any logic to get the user's token, such as Passport's createToken method
+        return $this->createToken('login_token')->accessToken;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -15,9 +21,8 @@ class LoginResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'token' => $this->resource['token']->plainTextToken,
-            'name' => $this->resource['user']->name,
-            'email' => $this->resource['user']->email,
+            'name' => $this->name,
+            'email' => $this->email,
         ];
     }
 }

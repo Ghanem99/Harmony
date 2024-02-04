@@ -25,8 +25,9 @@ class LoginController extends Controller
         $device_name = $request->post('device_name', $request->userAgent());
         $token = $user->createToken($device_name);
 
-        $data = new LoginResource(['token' => $token, 'user' => $user]);
-
-        return ApiResponse::success('User Login Successfully', $data);
+        return new JsonResponse([
+            'token' => $token->plainTextToken,
+            'user' => new LoginResource($user), 
+        ]);
     }
 }

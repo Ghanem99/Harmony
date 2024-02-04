@@ -11,7 +11,7 @@ use App\Helpers\ApiResponse;
 
 class LogoutController extends Controller
 {
-    public function logout($token = null) : JsonResponse
+    public function logout($token = null) : ApiResponse
     {
         $user = Auth::guard('sanctum')->user();
 
@@ -26,7 +26,7 @@ class LogoutController extends Controller
             && get_class($user) == $personalAccessToken->tokenable_type
         ) {
             $personalAccessToken->delete();
-            return new JsonResponse(['message' => 'Deleted Successfully!']);
+            return ApiResponse::success('Deleted Successfully!');
         }
 
         return ApiResponse::error('Invalid Credentials!');
