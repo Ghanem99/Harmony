@@ -18,8 +18,8 @@ class LoginController extends Controller
     {
         $user = User::where('email', $request->email)->first();
 
-        if (!$user && Hash::check($request->password, $user->password)) {
-            return ApiResponse::error('Invalid Credentials', null, 401);
+        if (!($user && Hash::check($request->password, $user->password))) {
+            return ApiResponse::error('Invalid Credentials', null);
         }
 
         $device_name = $request->post('device_name', $request->userAgent());
@@ -27,6 +27,6 @@ class LoginController extends Controller
 
         $data = new LoginResource(['token' => $token, 'user' => $user]);
 
-        return ApiResponse::success('User Login Successfully', $data, 201);
+        return ApiResponse::success('User Login Successfully', $data);
     }
 }

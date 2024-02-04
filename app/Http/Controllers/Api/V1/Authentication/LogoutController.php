@@ -29,7 +29,7 @@ class LogoutController extends Controller
             return new JsonResponse(['message' => 'Deleted Successfully!']);
         }
 
-        return ApiResponse::error('Invalid Credentials!', 401);
+        return ApiResponse::error('Invalid Credentials!');
 
     }
 }

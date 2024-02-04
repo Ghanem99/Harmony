@@ -23,6 +23,6 @@ class RegisterController extends Controller
         
         $data = new RegisterResource(['user' => $user]);
 
-        return ApiResponse::success('User Registered Successfully!', $data, 201);
+        return ApiResponse::success('User Registered Successfully!', $data);
     }
 }
