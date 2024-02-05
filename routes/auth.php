@@ -3,12 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\V1\Authentication\LoginController;
-use App\Http\Controllers\Api\V1\Authentication\LogoutController;
-use App\Http\Controllers\Api\V1\Authentication\RegisterController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserVrTrackerController;
 
-use App\Http\Controllers\Api\V1\UserController;
-use App\Http\Controllers\Api\V1\UserVrTrackerController;
+use App\Http\Controllers\Api\V1\AccessTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::ApiResource('users', UserController::class);
-
-Route::post('auth/register', [RegisterController::class, 'register'])
+Route::post('auth/access-tokens', [AccessTokenController::class, 'store'])
     ->middleware('guest:sanctum');
 
-Route::post('auth/login', [LoginController::class, 'login'])
-    ->middleware('guest:sanctum');
-
-Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout'])
+Route::delete('auth/access-tokens/{token?}', [AccessTokenController::class, 'destroy'])
     ->middleware('auth:sanctum');
