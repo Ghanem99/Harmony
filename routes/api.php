@@ -35,3 +35,5 @@ Route::post('auth/login', [LoginController::class, 'login'])
 
 Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout'])
     ->middleware('auth:sanctum');
+
+Route::post('life-style', [LifeStyleController::class, 'store']);
