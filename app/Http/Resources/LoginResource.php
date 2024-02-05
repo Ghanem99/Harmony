@@ -7,12 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class LoginResource extends JsonResource
 {
-    public function token()
-    {
-        // You can use any logic to get the user's token, such as Passport's createToken method
-        return $this->createToken('login_token')->accessToken;
-    }
-
     /**
      * Transform the resource into an array.
      *

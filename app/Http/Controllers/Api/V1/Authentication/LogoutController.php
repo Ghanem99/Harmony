@@ -11,7 +11,7 @@ use App\Helpers\ApiResponse;
 
 class LogoutController extends Controller
 {
-    public function logout($token = null) : ApiResponse
+    public function logout($token = null) : JsonResponse
     {
         $user = Auth::guard('sanctum')->user();
 
