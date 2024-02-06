@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\V1\Authentication\RegisterController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\UserVrTrackerController;
 
+use App\Http\Controllers\Api\V1\HabitController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,4 +38,5 @@ Route::post('auth/login', [LoginController::class, 'login'])
 Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout'])
     ->middleware('auth:sanctum');
 
-Route::post('life-style', [LifeStyleController::class, 'store']);
+Route::ApiResource('habits', HabitController::class)
+    ->middleware('auth:sanctum');
