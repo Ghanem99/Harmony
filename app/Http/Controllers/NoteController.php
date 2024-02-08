@@ -6,5 +6,9 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    //
+    public function index() {
+        $notes = Note::all();
+
+        
+    }
 }
