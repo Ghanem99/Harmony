@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Habit;
-App\Http\Requests\NoteRequests\CreateNoteRequest;
+use App\Http\Requests\NoteRequests\CreateNoteRequest;
+use Illuminate\Http\JsonResponse;
 
 class NoteController extends Controller
 {
@@ -24,7 +25,16 @@ class NoteController extends Controller
 
     public function store(CreateNoteRequest $request) 
     {
-        Note::create($request->all());
+        $note = Note::create($request->all());
+
+        if (!$note) {
+            return new JsonResponse(['message' => 'Something Went Wrong!']);
+        }
+
+        return new JsonResponse([
+            'message' => 'Note Create Successfully!', 
+            'date' => new CreateNoteResource($note)
+        ]);
     }
 
     public function update() 
