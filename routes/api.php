@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\UserVrTrackerController;
 
 use App\Http\Controllers\Api\V1\HabitController;
+use App\Http\Controllers\Api\V1\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,7 @@ Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout'])
     ->middleware('auth:sanctum');
 
 Route::ApiResource('habits', HabitController::class)
+    ->middleware('auth:sanctum');
+    
+Route::ApiResource('habits/{habit}/notes', NoteController::class)
     ->middleware('auth:sanctum');
