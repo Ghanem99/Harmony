@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Habit;
 use App\Http\Requests\NoteRequests\CreateNoteRequest;
+use App\Http\Requests\NoteRequests\UpdateNoteRequest;
 use App\Http\Resources\NoteResource;
 use Illuminate\Http\JsonResponse;
 
@@ -41,13 +42,32 @@ class NoteController extends Controller
         ]);
     }
 
-    public function update() 
+    public function update(UpdateNoteRequest $request, $habitId, $noteId) 
     {
-        Note::update($request->all());
+        $note = Note::where('id', $noteId)
+                    ->where('habit_id', $habitId)
+                    ->firstOrFail();
+    
+        if (!$note) {
+            return new JsonResponse(['message' => 'Note Not Found'], 404);
+        }
+    
+        $note->update($request->validated()); 
+    
+        return new JsonResponse([
+            'message' => 'Note Updated Successfully!', 
+            'data' => new NoteResource($note->fresh()) 
+        ]);
     }
 
-    public function destroy(Note $note) 
+    public function destroy($habitId, $noteId) 
     {
-        $note->destroy();
+        $note = Note::where('id', $noteId)
+                    ->where('habit_id', $habitId)
+                    ->firstOrFail();
+    
+        $note->delete();
+    
+        return new JsonResponse(['message' => 'Note Deleted Successfully!']);
     }
 }
