@@ -22,8 +22,6 @@ class CreateNoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
-            'habit_id' => 'required|exists:habits,id',
             'title' => 'string|max:255|min:3',
             'content' => 'string|min:3',
         ]; 

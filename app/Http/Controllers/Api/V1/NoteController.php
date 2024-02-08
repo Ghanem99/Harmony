@@ -7,33 +7,37 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Habit;
 use App\Http\Requests\NoteRequests\CreateNoteRequest;
+use App\Http\Resources\NoteResource;
 use Illuminate\Http\JsonResponse;
 
 class NoteController extends Controller
 {
-    public function index() {
-        $notes = Note::all();
+    public function index($habitId) {
+        $notes = Note::where('habit_id', '=', $habitId)->get();
 
-        return $notes;
+        return NoteResource::collection($notes);
     }
 
-    public function show($habit_id, $note_id) 
+    public function show($habitId, $note_id) 
     {
         $note = Note::find($note_id);
-        return $note;
+        return new NoteResource($note);
     }
 
-    public function store(CreateNoteRequest $request) 
+    public function store(CreateNoteRequest $request, $habitId) 
     {
-        $note = Note::create($request->all());
+        $validatedData = $request->validated();
+        $validatedData['habit_id'] = $habitId;
+
+        $note = Note::create($validatedData);
 
         if (!$note) {
             return new JsonResponse(['message' => 'Something Went Wrong!']);
         }
 
         return new JsonResponse([
-            'message' => 'Note Create Successfully!', 
-            'date' => new CreateNoteResource($note)
+            'message' => 'Note Created Successfully!', 
+            'date' => new NoteResource($note)
         ]);
     }
 

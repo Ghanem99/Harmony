@@ -33,5 +33,9 @@ class Note extends Model
                 $builder->where('user_id', $user->id);
             }
         });
+
+        static::creating(function (Note $note) {
+            $note->user_id = Auth::user()->id;
+        });
     }
 }
