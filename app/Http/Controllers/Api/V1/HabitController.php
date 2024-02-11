@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\HabitRequest;
-use App\Http\Requests\UpdateHabitRequest;
+use App\Http\Requests\StoreHabitRequest;
+use App\Http\Requests\UpdateStoreHabitRequest;
 use App\Http\Resources\HabitResource;
 use App\Http\Resources\HabitCollection;
 use App\Models\Habit;
@@ -30,14 +30,14 @@ class HabitController extends Controller
         return new HabitResource($habit);
     }
 
-    public function store(HabitRequest $request) 
+    public function store(StoreHabitRequest $request) 
     {
         $habit = auth()->user()->habits()->create($request->validate());
 
         return new HabitResource($habit);
     }
 
-    public function update(Habit $habit, UpdateHabitRequest $request) 
+    public function update(Habit $habit, UpdateStoreHabitRequest $request) 
     {
         $habit->update($request->all());
 
