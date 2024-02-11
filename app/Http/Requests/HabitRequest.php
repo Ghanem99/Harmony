@@ -24,7 +24,7 @@ class HabitRequest extends FormRequest
         return [
             'title' => 'required|string|max:225|min:3',  // Reading Gym
             'color' => 'required|string', // choose a color 
-            'icon' => 'required|string', // will be like a class
+            'icon' => 'required|image', // will be like a class
             'repetition' => 'required|int', // Daily:1 Weekly:7 Monthly:30
             'days' => 'required|string', // S M T W T F S Everyday
             'once_in' => 'required|string', // Morning Afternoon Evening OncAtAnyTime
