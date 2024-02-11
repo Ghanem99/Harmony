@@ -22,7 +22,6 @@ class UpdateHabitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'id',
             'title' => 'sometimes|required|string|max:225|min:3',  // Reading Gym
             'color' => 'sometimes|required|string', // choose a color 
             'icon' => 'sometimes|required|string', 
