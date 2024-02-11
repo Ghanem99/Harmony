@@ -16,7 +16,7 @@ class HabitController extends Controller
     public function index() 
     {
         $user = auth()->user();
-        $habits = $user->habits;
+        $habits = $user->habits()->paginate();
 
         if ($habits->isEmpty()) {
             return new JsonResponse(['message' => 'No Habits Found!']);
