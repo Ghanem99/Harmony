@@ -22,14 +22,13 @@ class HabitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:225|min:3',  // Reading Gym
-            'color' => 'required|string', // choose a color 
-            'icon' => 'required|image', // will be like a class
-            'repetition' => 'required|int', // Daily:1 Weekly:7 Monthly:30
-            'days' => 'required|string', // S M T W T F S Everyday
-            'once_in' => 'required|string', // Morning Afternoon Evening OncAtAnyTime
-            'reminder_at' => 'required|string', // 9:00am/pm
-            'image' => 'nullable|image'
+            'title' => 'required|string|max:225|min:3', 
+            'color' => 'required|string', 
+            'icon' => 'required|image', 
+            'repetition' => 'required|int', 
+            'days' => 'required|string|in:S,M,T,W,T,F,S,Everyday', 
+            'once_in' => 'required|string|in:Morning,Afternoon, Evening, OncAtAnyTime', 
+            'reminder_at' => 'required|date', 
         ];
     }
 }
