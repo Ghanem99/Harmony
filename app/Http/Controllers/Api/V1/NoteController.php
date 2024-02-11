@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Habit;
-use App\Http\Requests\NoteRequests\CreateNoteRequest;
-use App\Http\Requests\NoteRequests\UpdateNoteRequest;
+use App\Http\Requests\NoteRequests\StoreNoteRequest;
 use App\Http\Resources\NoteResource;
 use Illuminate\Http\JsonResponse;
 
@@ -25,7 +24,7 @@ class NoteController extends Controller
         return new NoteResource($note);
     }
 
-    public function store(CreateNoteRequest $request, $habitId) 
+    public function store(StoreNoteRequest $request, $habitId) 
     {
         $validatedData = $request->validated();
         $validatedData['habit_id'] = $habitId;
@@ -42,7 +41,7 @@ class NoteController extends Controller
         ]);
     }
 
-    public function update(UpdateNoteRequest $request, $habitId, $noteId) 
+    public function update(StoreNoteRequest $request, $habitId, $noteId) 
     {
         $note = Note::where('id', $noteId)
                     ->where('habit_id', $habitId)

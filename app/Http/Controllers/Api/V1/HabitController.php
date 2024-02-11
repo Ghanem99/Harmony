@@ -32,7 +32,7 @@ class HabitController extends Controller
 
     public function store(StoreHabitRequest $request) 
     {
-        $habit = auth()->user()->habits()->create($request->validate());
+        $habit = auth()->user()->habits()->create($request->validated());
 
         return new HabitResource($habit);
     }
