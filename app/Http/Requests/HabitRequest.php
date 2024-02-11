@@ -26,8 +26,8 @@ class HabitRequest extends FormRequest
             'color' => 'required|string', 
             'icon' => 'required|image', 
             'repetition' => 'required|int', 
-            'days' => 'required|string|in:S,M,T,W,T,F,S,Everyday', 
-            'once_in' => 'required|string|in:Morning,Afternoon, Evening, OncAtAnyTime', 
+            'days' => 'required|date', 
+            'once_in' => 'required|date', 
             'reminder_at' => 'required|date', 
         ];
     }
