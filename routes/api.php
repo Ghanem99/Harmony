@@ -42,5 +42,5 @@ Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout'])
 Route::ApiResource('habits', HabitController::class)
     ->middleware('auth:sanctum');
     
-Route::ApiResource('habits/{habitId}/notes', NoteController::class)
+Route::ApiResource('habits/{habit}/notes', NoteController::class)
     ->middleware('auth:sanctum');

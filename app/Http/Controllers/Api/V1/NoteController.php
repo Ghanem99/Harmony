@@ -12,22 +12,22 @@ use Illuminate\Http\JsonResponse;
 
 class NoteController extends Controller
 {
-    public function index($habitId) {
-        $notes = Note::where('habit_id', '=', $habitId)->get();
+    public function index(Habit $habit) {
+        $notes = Note::where('habit_id', '=', $habit->id)->get();
 
         return NoteResource::collection($notes);
     }
 
-    public function show($habitId, $note_id) 
+    public function show(Habit $habit, Note $note) 
     {
-        $note = Note::find($note_id);
+        $note = Note::find($note->id);
         return new NoteResource($note);
     }
 
-    public function store(StoreNoteRequest $request, $habitId) 
+    public function store(StoreNoteRequest $request, Habit $habit) 
     {
         $validatedData = $request->validated();
-        $validatedData['habit_id'] = $habitId;
+        $validatedData['habit_id'] = $habit->id;
 
         $note = Note::create($validatedData);
 
@@ -41,10 +41,10 @@ class NoteController extends Controller
         ]);
     }
 
-    public function update(StoreNoteRequest $request, $habitId, $noteId) 
+    public function update(StoreNoteRequest $request, Habit $habit, Note $note) 
     {
-        $note = Note::where('id', $noteId)
-                    ->where('habit_id', $habitId)
+        $note = Note::where('id', $note->id)
+                    ->where('habit_id', $habit->id)
                     ->firstOrFail();
     
         if (!$note) {
@@ -59,10 +59,10 @@ class NoteController extends Controller
         ]);
     }
 
-    public function destroy($habitId, $noteId) 
+    public function destroy(Habit $habit, Note $note) 
     {
-        $note = Note::where('id', $noteId)
-                    ->where('habit_id', $habitId)
+        $note = Note::where('id', $note->id)
+                    ->where('habit_id', $habit->id)
                     ->firstOrFail();
     
         $note->delete();
