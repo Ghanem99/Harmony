@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use App\Models\User;
 use App\Helpers\ApiResponse;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\UpdateUserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
@@ -27,7 +27,7 @@ class UserController extends Controller
 
         $userResource = new UserResource($user);
         return ApiResponse::success('User Retrieved Successfully!', $userResource, 200);
- 
+
     }
 
     public function update(User $user, UpdateUserRequest $request) : JsonResponse
@@ -55,10 +55,10 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             $user->delete();
-            
+
             // No return happens here, which is correct for a 204 response
             return ApiResponse::success('User Deleted Successfully!', null, 204);
-    
+
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return ApiResponse::error('User Not Found!', 404);
         }

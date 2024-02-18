@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Authentication;
+namespace App\Http\Controllers\Api\V1\Auth;
 
-use Illuminate\Http\JsonResponse;
-use App\Http\Resources\LoginResource;
-use App\Http\Requests\LoginRequest;
-use Laravel\Sanctum\PersonalAccessToken;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use App\Helpers\ApiResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Auth\LoginRequest;
+use App\Http\Resources\LoginResource;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -27,7 +25,7 @@ class LoginController extends Controller
 
         return new JsonResponse([
             'token' => $token->plainTextToken,
-            'user' => new LoginResource($user), 
+            'user' => new LoginResource($user),
         ]);
     }
 }
