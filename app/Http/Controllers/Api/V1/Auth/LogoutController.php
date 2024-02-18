@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Authentication;
+namespace App\Http\Controllers\Api\V1\Auth;
 
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\LogoutResource;
@@ -22,7 +22,7 @@ class LogoutController extends Controller
 
         $personalAccessToken = PersonalAccessToken::findToken($token);
         if (
-            $user->id == $personalAccessToken->tokenable_id 
+            $user->id == $personalAccessToken->tokenable_id
             && get_class($user) == $personalAccessToken->tokenable_type
         ) {
             $personalAccessToken->delete();

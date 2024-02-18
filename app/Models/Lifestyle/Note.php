@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Lifestyle;
 
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
 class Note extends Model
@@ -12,30 +14,26 @@ class Note extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 
-        'habit_id', 
-        'user_id', 
-        'title', 
+        'habit_id',
+        'user_id',
+        'title',
         'content'
     ];
 
-    public function user() 
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    protected static function booted()
+    protected static function booted(): void
     {
+        // Use Scope Classes
         static::addGlobalScope('user', function (Builder $builder) {
             $user = Auth::user();
 
             if ($user && $user->id) {
                 $builder->where('user_id', $user->id);
             }
-        });
-
-        static::creating(function (Note $note) {
-            $note->user_id = Auth::user()->id;
         });
     }
 }
