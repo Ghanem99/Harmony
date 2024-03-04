@@ -1,7 +1,7 @@
 
 
 # OCDetent Project
-
+.
 ## Overview
 OCDetent project offer a robust solution by merging Virtual Reality (VR) technology with an Artificial Intelligence (AI)-driven application. This innovative integration aims to provide comprehensive support for individuals battling OCD, empowering them to conquer negative feelings, manage symptoms, and bolster their emotional resilience.
 
