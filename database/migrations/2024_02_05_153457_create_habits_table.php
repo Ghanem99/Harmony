@@ -17,7 +17,7 @@ return new class extends Migration
 				->cascadeOnDelete();
 			$table->string('title');
 			$table->string('color');
-			$table->string('icon');
+			$table->string('icon')->nullable();
 			$table->integer('repetition');
 			$table->string('days');
 			$table->string('once_in');
