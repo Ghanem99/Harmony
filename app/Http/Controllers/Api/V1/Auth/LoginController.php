@@ -17,7 +17,7 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!($user && Hash::check($request->password, $user->password))) {
-            return ApiResponse::error('Invalid Credentials', null);
+            return ApiResponse::error('Invalid Credentials');
         }
 
         $device_name = $request->post('device_name', $request->userAgent());

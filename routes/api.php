@@ -35,3 +35,7 @@ Route::post('auth/register', [RegisterController::class, 'register'])
 
 Route::post('auth/login', [LoginController::class, 'login'])
     ->middleware('guest:sanctum');
+
+ Route::get('/hello', function () {
+        return 'Hello, World!';
+    });
