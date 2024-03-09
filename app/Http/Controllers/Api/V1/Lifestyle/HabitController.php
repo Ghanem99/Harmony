@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 
 class HabitController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $user = auth()->user();
         $habits = $user->habits()->paginate();
