@@ -24,12 +24,12 @@ class HabitController extends Controller
         return HabitResource::collection($habits);
     }
 
-    public function show(Habit $habit)
+    public function show(Habit $habit): HabitResource
     {
         return new HabitResource($habit);
     }
 
-    public function store(StoreHabitRequest $request)
+    public function store(StoreHabitRequest $request): HabitResource
     {
         $habit = auth()->user()->habits()->create($request->validated());
 
@@ -43,7 +43,7 @@ class HabitController extends Controller
         return new HabitResource($habit);
     }
 
-    public function destroy(Habit $habit)
+    public function destroy(Habit $habit): JsonResponse
     {
         $habit->delete();
 
