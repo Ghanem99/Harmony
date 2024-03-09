@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
 use App\Http\Controllers\Api\V1\Lifestyle\NoteController;
+use App\Http\Controllers\Api\V1\Content\ArticleController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
 
