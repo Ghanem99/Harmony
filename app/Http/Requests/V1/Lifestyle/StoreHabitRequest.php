@@ -30,5 +30,5 @@ class StoreHabitRequest extends FormRequest
             'once_in' => 'required|date',
             'reminder_at' => 'required|date',
         ];
-}
+    }
 }
