@@ -36,12 +36,13 @@ class MemoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required'
         ]);
        
         //$image = Memory::create($request->all());
         $imagePath = $request->file('image')->store('images');
-        $image = Memory::create(['image' => $imagePath]);
+        
+        $image = auth()->user()->habits()->memories()->create(['image' => $imagePath]);
 
         return response()->json(['message' => 'Image uploaded successfully', 'image' => $image], 201);
     }

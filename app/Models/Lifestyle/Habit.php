@@ -35,5 +35,11 @@ class Habit extends Model
     {
         return $this->hasMany(Note::class);
     }
+    public function memories(): HasMany
+    {
+        return $this->hasMany(Memory::class);
+    }
+
+
 
 }
