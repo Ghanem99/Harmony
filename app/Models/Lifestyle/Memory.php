@@ -23,9 +23,9 @@ class Memory extends Model
     return $this->belongsTo(User::class, 'user_id');
 }
 
-public function habit(): BelongsTo
+public function habit()
 {
-    return $this->belongsTo(Habit::class, 'habit_id');
+    return $this->belongsTo(Habit::class);
 }
 
 

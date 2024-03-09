@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\V1\Lifestyle;
-
+use App\Models\Lifestyle\Hapit;
 use App\Http\Controllers\Controller;
 use App\Models\Lifestyle\Memory;
 use Illuminate\Http\JsonResponse;
@@ -36,15 +36,20 @@ class MemoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required'
+
+            'image' =>  'required|url'
+            
         ]);
        
         //$image = Memory::create($request->all());
-        $imagePath = $request->file('image')->store('images');
-        
-        $image = auth()->user()->habits()->memories()->create(['image' => $imagePath]);
-
-        return response()->json(['message' => 'Image uploaded successfully', 'image' => $image], 201);
+        try {
+            // You can save the image link directly to the database
+            $image = auth()->user()->habits()->memories()->create(['image' => $request->input('image_link')]);
+    
+            return response()->json(['message' => 'Image link added successfully', 'image' => $image], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error adding image link', 'error' => $e->getMessage()], 500);
+        }
     }
     
 

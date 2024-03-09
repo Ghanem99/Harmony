@@ -35,7 +35,7 @@ class Habit extends Model
     {
         return $this->hasMany(Note::class);
     }
-    public function memories(): HasMany
+    public function memories()
     {
         return $this->hasMany(Memory::class);
     }
