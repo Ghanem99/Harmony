@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout']);
 
     Route::apiResource('habits', HabitController::class);
+    Route::apiResource('articles', ArticleController::class);
 
     Route::apiResource('habits/{habit}/notes', NoteController::class);
 });
