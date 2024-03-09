@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1\Lifestyle;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateStoreHabitRequest;
 use App\Http\Requests\V1\Lifestyle\StoreHabitRequest;
 use App\Http\Resources\HabitCollection;
 use App\Http\Resources\HabitResource;
@@ -36,7 +35,7 @@ class HabitController extends Controller
         return new HabitResource($habit);
     }
 
-    public function update(Habit $habit, UpdateStoreHabitRequest $request)
+    public function update(Habit $habit, $request)
     {
         $habit->update($request->all());
 

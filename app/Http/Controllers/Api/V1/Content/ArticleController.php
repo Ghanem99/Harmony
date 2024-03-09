@@ -9,7 +9,7 @@ use App\Http\Resources\ArticleResource;
 use App\Models\Content\Article;
 use Illuminate\Http\JsonResponse;
 
-class ArticlesController extends Controller
+class ArticleController extends Controller
 {
    
     public function index()
