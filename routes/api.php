@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function (){
+Route::group([
+    'middleware' => 'auth:sanctum',
+], function () {
 
     Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout']);
 
