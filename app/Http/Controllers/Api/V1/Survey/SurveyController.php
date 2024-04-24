@@ -18,8 +18,4 @@ class SurveyController extends Controller
     {
         return $survey;
     }
-    public function store(Request $request)
-    {
-        return Survey::create($request->all());
-    }
 }
