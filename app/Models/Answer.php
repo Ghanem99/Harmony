@@ -11,7 +11,9 @@ class Answer extends Model
     use HasFactory;
 
     protected $fillable = [
-      'answer','score', 'question_id'
+      'answer',
+      'score',
+      'question_id'
     ];
 
     public function question(): BelongsTo
