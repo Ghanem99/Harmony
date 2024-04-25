@@ -29,6 +29,7 @@ class migrateFreshSeedDb extends Command
         $this->call('migrate:fresh', [
             '--seed' => true,
         ]);
+        // the pre command was php artisan migrate:fresh --seed
 
         $this->info('Database migrated and seeded successfully.');
     }
