@@ -15,49 +15,104 @@ class AnswerSeeder extends Seeder
     {
         $answers = [
             [
-                'answer' => 'Laravel',
-                'score' => 10,
+                'answer' => 'Yes',
+                'score' => 1,
                 'question_id' => 1,
             ],
             [
-                'answer' => 'React',
-                'score' => 5,
+                'answer' => 'No',
+                'score' => 0,
                 'question_id' => 1,
             ],
             [
-                'answer' => 'Vue',
-                'score' => 3,
-                'question_id' => 1,
-            ],
-            [
-                'answer' => 'PHP',
-                'score' => 10,
+                'answer' => 'Yes',
+                'score' => 1,
                 'question_id' => 2,
             ],
             [
-                'answer' => 'Python',
-                'score' => 5,
+                'answer' => 'No',
+                'score' => 0,
                 'question_id' => 2,
             ],
             [
-                'answer' => 'Java',
-                'score' => 3,
-                'question_id' => 2,
-            ],
-            [
-                'answer' => 'MySQL',
-                'score' => 10,
+                'answer' => 'Yes',
+                'score' => 1,
                 'question_id' => 3,
             ],
             [
-                'answer' => 'PostgreSQL',
-                'score' => 5,
+                'answer' => 'No',
+                'score' => 0,
                 'question_id' => 3,
             ],
             [
-                'answer' => 'SQLite',
-                'score' => 3,
-                'question_id' => 3,
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 4,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 4,
+            ],
+            [
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 5,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 5,
+            ],
+            [
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 6,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 6,
+            ],
+            [
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 7,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 7,
+            ],
+            [
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 8,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 8,
+            ],
+            [
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 9,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 9,
+            ],
+            [
+                'answer' => 'Yes',
+                'score' => 1,
+                'question_id' => 10,
+            ],
+            [
+                'answer' => 'No',
+                'score' => 0,
+                'question_id' => 10,
             ],
         ];
         
