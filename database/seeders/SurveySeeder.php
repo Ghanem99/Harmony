@@ -14,7 +14,8 @@ class SurveySeeder extends Seeder
     public function run(): void
     {
         Survey::create([
-            'name' => 'Diagnose'
+            'title' => 'Diagnose Survey',
+            'user_id' => 1,
         ]);
     }
 }
