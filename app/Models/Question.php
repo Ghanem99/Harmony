@@ -12,8 +12,7 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'question', 
-        'survey_id',
+        'name'
     ];
 
     public function survey(): BelongsTo

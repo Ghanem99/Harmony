@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Api\V1\Survey;
 
-use App\Models\Question;
 use App\Http\Controllers\Controller;
+use App\Models\Survey;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
-    public function show($surveyId): Collection
+    public function index(): Collection
     {
-        $questions = Question::where('survey_id', $surveyId)->with('answers')->get();
-        return $questions; // use QuestionResource to format the response
+        return Survey::all();
+    }
+
+    public function show(Survey $survey): Survey
+    {
+        return $survey;
     }
 }

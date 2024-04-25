@@ -11,15 +11,8 @@ class Survey extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 
-        'score', 
-        'user_id'
+        'name'
     ];
-
-    public function user() 
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function questions(): HasMany
     {

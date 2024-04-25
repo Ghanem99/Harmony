@@ -16,51 +16,15 @@ class QuestionSeeder extends Seeder
     {
         $questions = [
             [
-                'question' => 'Do you have a cough?',
+                'name' => 'first question?',
                 'survey_id' => 1,
             ],
             [
-                'question' => 'Do you have a fever?',
+                'name' => 'second question?',
                 'survey_id' => 1,
             ],
             [
-                'question' => 'Do you have a sore throat?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a headache?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a runny nose?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a shortness of breath?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a loss of taste or smell?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a body ache?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a fatigue?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a chills?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a nausea or vomiting?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a diarrhea?',
+                'name' => 'third question?',
                 'survey_id' => 1,
             ],
         ];
