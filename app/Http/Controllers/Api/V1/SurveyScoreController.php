@@ -18,7 +18,7 @@ class SurveyScoreController extends Controller
 
         $totalScore = 0;
         foreach ($answers as $answer) {
-            $selectedAnswer = Answer::where('id', $answer['answer_id'])
+            $selectedAnswer = Answer::where('answer', $answer['answer'])
                                     ->where('question_id', $answer['question_id'])
                                     ->first();
             if ($selectedAnswer) {

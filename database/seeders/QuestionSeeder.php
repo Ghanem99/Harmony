@@ -9,64 +9,42 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class QuestionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
         $questions = [
             [
-                'question' => 'Do you have a cough?',
+                'question' => 'How much time is spent on compulsive actions?',
                 'survey_id' => 1,
+                'image_path' => 'assets/images/11.png',
             ],
             [
-                'question' => 'Do you have a fever?',
+                'question' => 'To what extent do compulsive thoughts conflict with daily activities, social life, and work?',
                 'survey_id' => 1,
+                'image_path' => 'assets/images/12.png',
             ],
             [
-                'question' => 'Do you have a sore throat?',
+                'question' => 'How much distress do you feel if prevented from engaging in compulsive activities?',
                 'survey_id' => 1,
+                'image_path' => 'assets/images/13.png',
             ],
             [
-                'question' => 'Do you have a headache?',
+                'question' => 'How much effort do you make to resist engaging in compulsive acts?',
                 'survey_id' => 1,
+                'image_path' => 'assets/images/14.png',
             ],
             [
-                'question' => 'Do you have a runny nose?',
+                'question' => 'What is your level of control over your compulsive behaviors?',
                 'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a shortness of breath?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a loss of taste or smell?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a body ache?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a fatigue?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a chills?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a nausea or vomiting?',
-                'survey_id' => 1,
-            ],
-            [
-                'question' => 'Do you have a diarrhea?',
-                'survey_id' => 1,
+                'image_path' => '',
             ],
         ];
 
         foreach ($questions as $question) {
-            Question::create($question);
+            Question::create([
+                'question' => $question['question'],
+                'survey_id' => $question['survey_id'],
+                'image_path' => $question['image_path']
+            ]);
         }
     }
 }

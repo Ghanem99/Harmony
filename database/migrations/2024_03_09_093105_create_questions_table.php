@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('questions', function (Blueprint $table) {
@@ -16,13 +13,11 @@ return new class extends Migration
             $table->string('question')->default('question');
             $table->foreignId('survey_id')->constrained('surveys')
                 ->cascadeOnDelete();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('questions');
