@@ -1,12 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\ScoreController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
+use App\Http\Controllers\Api\V1\SurveyScoreController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
-use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
+use App\Http\Controllers\Api\V1\Survey\AnswerController;
+use App\Http\Controllers\Api\V1\Survey\SurveyController;
 use App\Http\Controllers\Api\V1\Lifestyle\NoteController;
-use App\Http\Controllers\Api\V1\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
+use App\Http\Controllers\Api\V1\Survey\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +24,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function (){
+Route::group([
+    'middleware' => 'auth:sanctum',
+], function () {
 
     Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout']);
 
     Route::apiResource('habits', HabitController::class);
 
     Route::apiResource('habits/{habit}/notes', NoteController::class);
+
+    Route::get('surveys/{survey}', [SurveyController::class, 'show']);
+    Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);
+
 });
 
 Route::apiResource('users', UserController::class);
@@ -35,3 +46,4 @@ Route::post('auth/register', [RegisterController::class, 'register'])
 
 Route::post('auth/login', [LoginController::class, 'login'])
     ->middleware('guest:sanctum');
+
