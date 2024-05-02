@@ -56,8 +56,14 @@ class User extends Authenticatable
         return $this->hasMany(Note::class);
     }
 
+<<<<<<< HEAD
     public function memories()
     {
         return $this->hasMany(Memory::class);
+=======
+    public function surveys() 
+    {
+        return $this->belongsToMany(Survey::class);
+>>>>>>> upstream/main
     }
 }
