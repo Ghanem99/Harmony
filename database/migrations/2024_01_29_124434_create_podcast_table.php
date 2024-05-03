@@ -1,19 +1,21 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreatePodcastTable extends Migration {
+return new class extends Migration {
 
 	public function up()
 	{
 		Schema::create('podcast', function(Blueprint $table) {
-			$table->increments('id');
+			$table->id();
+			$table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+			$table->string('title');
+			$table->string('description');
+			$table->string('file');
+			$table->string('image');
 			$table->timestamps();
-			$table->string('name');
-			$table->string('link');
-			$table->integer('category_id')->unsigned();
-			$table->string('note');
 		});
 	}
 
@@ -21,4 +23,4 @@ class CreatePodcastTable extends Migration {
 	{
 		Schema::drop('podcast');
 	}
-}
+};
