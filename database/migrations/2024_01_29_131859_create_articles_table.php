@@ -10,11 +10,11 @@ return new class extends Migration {
 	{
 		Schema::create('articles', function(Blueprint $table) {
 			$table->id();
-			$table->string('slug');
-			$table->string('name');
-			$table->string('description');
+			$table->string('title');
+			$table->string('content');
+			$table->string('image');
 			$table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-			$table->foreignId('author_id')->constrained('users');
+			$table->string('author');
 			$table->timestamps();
             $table->softDeletes();
 		});
