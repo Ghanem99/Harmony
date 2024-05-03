@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateBreathTable extends Migration {
+return new class extends Migration {
 
 	public function up()
 	{
@@ -19,4 +20,4 @@ class CreateBreathTable extends Migration {
 	{
 		Schema::drop('breath');
 	}
-}
+};
