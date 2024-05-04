@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1\Lifestyle;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class StoreHabitRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,13 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|email|max:255|unique:users',
-            'password' => 'sometimes|required|string|min:6',
+            'title' => 'required|string|max:225|min:3',
+            'color' => 'required|string',
+            'icon' => 'required|image',
+            'repetition' => 'required|int',
+            'days' => 'required|date',
+            'once_in' => 'required|date',
+            'reminder_at' => 'required|date',
         ];
-    }
+}
 }
