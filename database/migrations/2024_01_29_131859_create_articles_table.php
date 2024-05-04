@@ -1,19 +1,20 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration {
+return new class extends Migration {
 
 	public function up()
 	{
 		Schema::create('articles', function(Blueprint $table) {
 			$table->id();
-			$table->string('slug');
-			$table->string('name');
-			$table->string('description');
-			$table->foreignId('category_id')->constrained('category')->cascadeOnDelete();
-			$table->foreignId('author_id')->constrained('users');
+			$table->string('title');
+			$table->string('content');
+			$table->string('image');
+			$table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+			$table->string('author');
 			$table->timestamps();
             $table->softDeletes();
 		});
@@ -23,4 +24,4 @@ class CreateArticlesTable extends Migration {
 	{
 		Schema::drop('articles');
 	}
-}
+};
