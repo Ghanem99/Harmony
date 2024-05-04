@@ -62,7 +62,8 @@ class ArticleResource extends Resource
                 TextColumn::make('author')
                     ->searchable()
                     ->sortable(),
-                
+                ImageColumn::make('image')
+                    ->label('Image'),
             ])
             ->filters([
                 // make a filter for the category
