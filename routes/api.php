@@ -1,17 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\UserController;
-use App\Http\Controllers\Api\V1\ScoreController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\SurveyScoreController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
-use App\Http\Controllers\Api\V1\Survey\AnswerController;
 use App\Http\Controllers\Api\V1\Survey\SurveyController;
 use App\Http\Controllers\Api\V1\Lifestyle\NoteController;
 use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
-use App\Http\Controllers\Api\V1\Survey\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +35,8 @@ Route::group([
     Route::get('surveys/{survey}', [SurveyController::class, 'show']);
     Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);
 
+    Route::get('/chats', [ChatController::class, 'index']);
+    Route::post('/chats', [ChatController::class, 'store']);
 });
 
 Route::apiResource('users', UserController::class);
