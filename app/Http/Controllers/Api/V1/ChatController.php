@@ -7,20 +7,25 @@ use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 class ChatController extends Controller
 {
-    public function index()
+    public function index(): Collection
     {
-        return Chat::with('user')->get();
+        return Chat::with('user')->get(); // ToDo: use pagination and CustomResource
     }
 
     public function store(Request $request)
     {
-        $chat = new Chat;
-        $chat->user_id = Auth::id();
-        $chat->message = $request->message;
-        $chat->save();
+        $request->validate([
+            'message' => 'required|string'
+        ]); // ToDo: use FormRequest
+
+        Chat::create([
+            'user_id' => Auth::id(),
+            'message' => $request->message
+        ]);
 
         $pusher = new Pusher(
             env('PUSHER_APP_KEY'),
@@ -30,34 +35,18 @@ class ChatController extends Controller
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true
             ]
-        );
+        ); // ToDo: use PusherService
 
-        $aiResponse = $this->aiResponse($request->message);
+        $aiResponse = $this->aiResponse($request->message); 
 
         $data = ['message' => $aiResponse, 'user_id' => Auth::id()];
         $pusher->trigger('chat-channel', 'chat-event', $data);
 
-        return response()->json(['message' => 'Message sent successfully'], 201);
+        return response()->json(['message' => 'Message sent successfully'], 201); // ToDo: use CustomResource
     }
 
     public function aiResponse($message)
     {
-        // $client = new Client(); // where the AI model is hosted
-        // $response = $client->request('POST', 'https://api.openai.com/v1/completions', [
-        //     'headers' => [
-        //         'Content-Type' => 'application/json',
-        //         'Authorization' => 'Bearer YOUR_OPENAI_API_KEY',
-        //     ],
-        //     'json' => [
-        //         'prompt' => $message,
-        //         'max_tokens' => 50,
-        //         'temperature' => 0.7,
-        //         'top_p' => 1,
-        //         'n' => 1,
-        //         'stop' => ['\n'],
-        //     ],
-        // ]);
-
-        // return json_decode($response->getBody()->getContents())->choices[0]->text;
+        // ToDo: use AI model to generate response
     }
 }
