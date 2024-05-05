@@ -40,7 +40,7 @@ Route::group([
     Route::post('/chats', [ChatController::class, 'store']);
 
     Route::get('/sessions/{id}', [VrSessionController::class, 'show']);
-    Route::post('/sessions', [VrSessionController::class, 'store']);
+    Route::post('/sessions/{user}', [VrSessionController::class, 'store']);
     Route::get('/sessions', [VrSessionController::class, 'index']);
 
     // to return the current auth user 

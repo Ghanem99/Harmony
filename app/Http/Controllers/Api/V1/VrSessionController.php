@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class VrSessionController extends Controller
 {
@@ -23,9 +24,9 @@ class VrSessionController extends Controller
         return auth()->user()->sessions()->findOrFail($id); // use CustomResource to return a custom response.
     }
 
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        $session = auth()->user()->sessions()->create($request->all());
+        $session = $user->sessions()->create($request->all());
 
         return response()->json([
             'message' => 'Session created successfully',
