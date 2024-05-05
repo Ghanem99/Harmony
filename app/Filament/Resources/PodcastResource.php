@@ -2,47 +2,50 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\PodcastResource\Pages;
+use App\Filament\Resources\PodcastResource\RelationManagers;
+use App\Models\Podcast;
 use Filament\Forms;
-use Filament\Tables;
-use App\Models\Article;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ArticleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ArticleResource\RelationManagers;
 
-class ArticleResource extends Resource
+class PodcastResource extends Resource
 {
-    protected static ?string $model = Article::class;
+    protected static ?string $model = Podcast::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-map';
+    protected static ?string $navigationIcon = 'heroicon-o-microphone';
     protected static ?string $navigationGroup = 'Content Management';
-    public static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title')
                     ->label('Title')
                     ->required(),
-                Forms\Components\Textarea::make('content')
-                    ->label('Content')
+                Textarea::make('description')
+                    ->label('Description')
                     ->required(),
-                Forms\Components\Select::make('category_id')
+                FileUpload::make('file')
+                    ->label('File')
+                    ->required(),
+                FileUpload::make('image')
+                    ->label('Image')
+                    ->required(),
+                Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('author')
-                    ->label('Author')
-                    ->required(),
-                Forms\Components\FileUpload::make('image')
-                    ->label('Image')
-                    ->image(),
             ]);
     }
 
@@ -53,31 +56,21 @@ class ArticleResource extends Resource
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('content')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('category.name')
-                    ->label('Category')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('author')
+                TextColumn::make('description')
                     ->searchable()
                     ->sortable(),
                 ImageColumn::make('image')
                     ->label('Image'),
+                TextColumn::make('category.name')
+                    ->label('Category')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
-                // make a filter for the category
+                // filter by category
                 Tables\Filters\SelectFilter::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name'),
-                // another for author
-                Tables\Filters\SelectFilter::make('author')
-                    ->label('Author')
-                    ->options([
-                        'John Doe' => 'John Doe',
-                        'Jane Doe' => 'Jane Doe',
-                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -99,9 +92,9 @@ class ArticleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticles::route('/'),
-            'create' => Pages\CreateArticle::route('/create'),
-            'edit' => Pages\EditArticle::route('/{record}/edit'),
+            'index' => Pages\ListPodcasts::route('/'),
+            'create' => Pages\CreatePodcast::route('/create'),
+            'edit' => Pages\EditPodcast::route('/{record}/edit'),
         ];
     }
 }
