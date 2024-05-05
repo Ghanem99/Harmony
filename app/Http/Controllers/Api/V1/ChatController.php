@@ -7,24 +7,25 @@ use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Collection;
 
 class ChatController extends Controller
 {
-    public function index(): Collection
+    public function index()
     {
-        return Chat::with('user')->get(); // ToDo: use pagination and CustomResource
+        return Auth::user()->chats()->paginate(5);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'message' => 'required|string'
+            'message' => 'required|string', 
+            'ai_response' => 'nullable|string'
         ]); // ToDo: use FormRequest
 
         Chat::create([
             'user_id' => Auth::id(),
-            'message' => $request->message
+            'message' => $request->message, 
+            'ai_response' => 'AI: When I am ready to talk, I will. For now, I will just listen.'
         ]);
 
         $pusher = new Pusher(
