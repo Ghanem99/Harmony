@@ -42,11 +42,14 @@ class ChatController extends Controller
         $data = ['message' => $aiResponse, 'user_id' => Auth::id()];
         $pusher->trigger('chat-channel', 'chat-event', $data);
 
-        return response()->json(['message' => 'Message sent successfully'], 201); // ToDo: use CustomResource
+        return response()->json([
+            'message' => 'Message sent successfully', 
+            'data' => $data
+        ], 201); // ToDo: use CustomResource
     }
 
     public function aiResponse($message)
     {
-        // ToDo: use AI model to generate response
+        return 'AI: ' . $message;
     }
 }
