@@ -50,6 +50,6 @@ class ChatController extends Controller
 
     public function aiResponse($message)
     {
-        return 'AI: ' . $message;
+        return 'AI: ' . 'When I am ready to talk, I will. For now, I will just listen.';
     }
 }
