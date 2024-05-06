@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Survey\SurveyController;
 use App\Http\Controllers\Api\V1\Lifestyle\NoteController;
 use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
+use App\Http\Controllers\Api\V1\Lifestyle\MemoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::group([
     Route::apiResource('habits', HabitController::class);
 
     Route::apiResource('habits/{habit}/notes', NoteController::class);
+    Route::apiResource('habits/{habit}/memories', MemoryController::class);
 
     Route::get('surveys/{survey}', [SurveyController::class, 'show']);
     Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);
