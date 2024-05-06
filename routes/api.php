@@ -34,6 +34,8 @@ Route::group([
     Route::apiResource('habits/{habit}/notes', NoteController::class);
     Route::apiResource('habits/{habit}/memories', MemoryController::class);
 
+    
+
     Route::get('surveys/{survey}', [SurveyController::class, 'show']);
     Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);
 
