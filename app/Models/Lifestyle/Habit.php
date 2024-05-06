@@ -3,9 +3,10 @@
 namespace App\Models\Lifestyle;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Memory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Habit extends Model
 {
@@ -36,4 +37,8 @@ class Habit extends Model
         return $this->hasMany(Note::class);
     }
 
+    public function memories(): HasMany
+    {
+        return $this->hasMany(Memory::class);
+    }
 }

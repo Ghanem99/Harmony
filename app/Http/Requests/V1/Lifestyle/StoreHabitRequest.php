@@ -23,12 +23,12 @@ class StoreHabitRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:225|min:3',
-            'color' => 'required|string',
-            'icon' => 'required|image',
-            'repetition' => 'required|int',
-            'days' => 'required|date',
-            'once_in' => 'required|date',
-            'reminder_at' => 'required|date',
+            'color' => 'string',
+            'icon' => 'image',
+            'repetition' => 'int',
+            'days' => 'date',
+            'once_in' => 'date',
+            'reminder_at' => 'date',
         ];
 }
 }
