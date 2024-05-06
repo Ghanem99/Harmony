@@ -13,6 +13,8 @@ use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\RelationManagers;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
@@ -43,6 +45,16 @@ class UserResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('age')
                     ->maxLength(255),
+                Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->multiple()
+                    ->required(),
+                Select::make('permissions')
+                    ->relationship('permissions', 'name')
+                    ->preload()
+                    ->multiple()
+                    ->required(),
             ]);
     }
 
@@ -67,6 +79,16 @@ class UserResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                // Tables\Columns\TextColumn::make('roles')
+                //     ->label('Roles')
+                //     ->value(function (User $user) {
+                //         return $user->roles->pluck('name')->join(', ');
+                //     }),
+                // Tables\Columns\TextColumn::make('permissions')
+                //     ->label('Permissions')
+                //     ->value(function (User $user) {
+                //         return $user->permissions->pluck('name')->join(', ');
+                //     }),
             ])
             ->filters([
                 //
