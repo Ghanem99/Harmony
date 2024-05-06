@@ -11,17 +11,7 @@ use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Survey\SurveyController;
 use App\Http\Controllers\Api\V1\Lifestyle\NoteController;
 use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\Api\V1\Lifestyle\MemoryController;
 
 Route::group([
     'middleware' => 'auth:sanctum',
@@ -30,8 +20,8 @@ Route::group([
     Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout']);
 
     Route::apiResource('habits', HabitController::class);
-
     Route::apiResource('habits/{habit}/notes', NoteController::class);
+    Route::apiResource('habits/{habit}/memories', MemoryController::class);
 
     Route::get('surveys/{survey}', [SurveyController::class, 'show']);
     Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);

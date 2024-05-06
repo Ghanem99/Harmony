@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasMany(Chat::class);
     }
 
+    public function memories(): HasMany
+    {
+        return $this->hasMany(Memory::class);
+    }
+    
     public function sessions(): HasMany
     {
         return $this->hasMany(Session::class);
