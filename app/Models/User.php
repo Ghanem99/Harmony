@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Memory::class);
     }
+    
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(Session::class);
+    }
 }
