@@ -2,16 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PermissionResource\Pages;
-use App\Filament\Resources\PermissionResource\RelationManagers;
-use App\Models\Permission;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PermissionResource\Pages;
+use App\Filament\Resources\PermissionResource\RelationManagers;
 
 class PermissionResource extends Resource
 {
@@ -27,7 +30,13 @@ class PermissionResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make()->schema([
+                    TextInput::make('name')
+                    ->label('Name')
+                    ->required()
+                    ->placeholder('Permission Name')
+                    ->unique(),
+                ])
             ]);
     }
 
@@ -35,7 +44,10 @@ class PermissionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
