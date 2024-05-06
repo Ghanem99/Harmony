@@ -16,11 +16,11 @@ return new class extends Migration
 			$table->foreignId('user_id')->constrained('users')
 				->cascadeOnDelete();
 			$table->string('title');
-			$table->string('color');
-			$table->string('icon');
-			$table->integer('repetition');
-			$table->string('days');
-			$table->string('once_in');
+			$table->string('color')->nullable();
+			$table->string('icon')->nullable();
+			$table->integer('repetition')->default(1);
+			$table->string('days')->default('daily');
+			$table->string('once_in')->nullable();
 			$table->string('reminder_at')->default('9:00pm');
 			$table->string('image')->nullable();
 			$table->timestamps();

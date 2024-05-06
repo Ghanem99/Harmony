@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('memories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('habit_id')->constrained('habits')
+                ->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
             $table->string('image');
