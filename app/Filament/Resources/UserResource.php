@@ -44,6 +44,7 @@ class UserResource extends Resource
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('age')
+                    ->required()
                     ->maxLength(255),
                 Select::make('roles')
                     ->relationship('roles', 'name')
@@ -54,7 +55,6 @@ class UserResource extends Resource
                     ->relationship('permissions', 'name')
                     ->preload()
                     ->multiple()
-                    ->required(),
             ]);
     }
 
@@ -66,9 +66,6 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('age')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

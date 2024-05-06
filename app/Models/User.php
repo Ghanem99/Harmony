@@ -28,6 +28,7 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'age'
     ];
 
     /**
@@ -52,7 +53,8 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->hasRole('admin');
+        // return $this->hasRole(['admin', 'writer', 'moderator']);
+        return true;
     }
 
     public function habits(): HasMany
