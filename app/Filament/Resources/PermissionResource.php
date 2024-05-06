@@ -32,10 +32,10 @@ class PermissionResource extends Resource
             ->schema([
                 Card::make()->schema([
                     TextInput::make('name')
-                    ->label('Name')
-                    ->required()
-                    ->placeholder('Permission Name')
-                    ->unique(ignoreRecord: true),
+                        ->label('Name')
+                        ->required()
+                        ->placeholder('Permission Name')
+                        ->unique(ignoreRecord: true),
                 ])
             ]);
     }
