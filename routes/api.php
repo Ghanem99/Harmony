@@ -12,17 +12,6 @@ use App\Http\Controllers\Api\V1\Lifestyle\NoteController;
 use App\Http\Controllers\Api\V1\Lifestyle\HabitController;
 use App\Http\Controllers\Api\V1\Lifestyle\MemoryController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
 Route::group([
     'middleware' => 'auth:sanctum',
 ], function () {
