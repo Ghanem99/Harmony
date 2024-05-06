@@ -30,11 +30,8 @@ Route::group([
     Route::delete('auth/logout/{token?}', [LogoutController::class, 'logout']);
 
     Route::apiResource('habits', HabitController::class);
-
     Route::apiResource('habits/{habit}/notes', NoteController::class);
     Route::apiResource('habits/{habit}/memories', MemoryController::class);
-
-    
 
     Route::get('surveys/{survey}', [SurveyController::class, 'show']);
     Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);
