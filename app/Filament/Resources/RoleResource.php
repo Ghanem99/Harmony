@@ -36,13 +36,6 @@ class RoleResource extends Resource
                         ->required()
                         ->placeholder('Role Name')
                         ->unique(),
-                    Select::make('permissions')
-                        ->label('Permissions')
-                        ->unique(ignoreRecord: true)
-                        ->relationship('permissions', 'name')
-                        ->preload()
-                        ->multiple()
-                        ->required(),
                 ])
             ]);
     }
@@ -55,7 +48,6 @@ class RoleResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
-                
             ])
             ->filters([
                 //
@@ -84,5 +76,10 @@ class RoleResource extends Resource
             'create' => Pages\CreateRole::route('/create'),
             'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('name','!=','admin');
     }
 }
