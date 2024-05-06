@@ -32,10 +32,17 @@ class RoleResource extends Resource
             ->schema([
                 Card::make()->schema([
                     TextInput::make('name')
-                    ->label('Name')
-                    ->required()
-                    ->placeholder('Role Name')
-                    ->unique(),
+                        ->label('Name')
+                        ->required()
+                        ->placeholder('Role Name')
+                        ->unique(),
+                    Select::make('permissions')
+                        ->label('Permissions')
+                        ->unique(ignoreRecord: true)
+                        ->relationship('permissions', 'name')
+                        ->preload()
+                        ->multiple()
+                        ->required(),
                 ])
             ]);
     }
@@ -48,10 +55,7 @@ class RoleResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('permissions')    
-                    ->label('Permissions')
-                    ->searchable()
-                    ->sortable(),
+                
             ])
             ->filters([
                 //

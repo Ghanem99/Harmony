@@ -35,7 +35,7 @@ class PermissionResource extends Resource
                     ->label('Name')
                     ->required()
                     ->placeholder('Permission Name')
-                    ->unique(),
+                    ->unique(ignoreRecord: true),
                 ])
             ]);
     }
@@ -54,6 +54,7 @@ class PermissionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteACtion::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
