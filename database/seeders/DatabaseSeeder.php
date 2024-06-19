@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AnswerSeeder::class);
         $this->call(ScoreSeeder::class);
 
-        $role = Role::create(['name' => 'admin']);
+        // $role = Role::create(['name' => 'admin']);
     }
 }
