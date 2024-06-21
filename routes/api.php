@@ -26,8 +26,8 @@ Route::group([
     Route::get('surveys/{survey}', [SurveyController::class, 'show']);
     Route::post('surveys/{survey}/calculate', [SurveyScoreController::class, 'calculate']);
 
-    Route::get('/chats', [ChatController::class, 'index']);
-    Route::post('/chats', [ChatController::class, 'store']);
+    Route::get('/chat', [ChatController::class, 'show']);
+    Route::post('/chat', [ChatController::class, 'store']);
 
     Route::get('/sessions/{id}', [VrSessionController::class, 'show']);
     Route::post('/sessions/{user}', [VrSessionController::class, 'store']);

@@ -12,8 +12,6 @@ class Chat extends Model
 
     protected $fillable = [
         'user_id',
-        'message', 
-        'ai_response'
     ];
 
     public function user(): BelongsTo
