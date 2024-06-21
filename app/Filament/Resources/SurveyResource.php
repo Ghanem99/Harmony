@@ -20,7 +20,7 @@ class SurveyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
     protected static ?string $navigationGroup = 'Survey Management';
-    public static ?int $navigationSort = 2;
+    public static ?int $navigationSort = 1;
     
 
 

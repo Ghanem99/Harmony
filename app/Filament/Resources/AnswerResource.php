@@ -21,6 +21,7 @@ class AnswerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Survey Management';
+    public static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
