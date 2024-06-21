@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\VrSessionController;
@@ -33,7 +34,8 @@ Route::group([
     Route::post('/sessions/{user}', [VrSessionController::class, 'store']);
     Route::get('/sessions', [VrSessionController::class, 'index']);
 
-    // to return the current auth user 
+    Route::post('plan/generate', [PlanController::class, 'generate']);
+    Route::get('plan', [PlanController::class, 'show']);
 });
 
 Route::apiResource('users', UserController::class);
