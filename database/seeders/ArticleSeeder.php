@@ -12,30 +12,43 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
+        // title contonet and image and category_id and author
+
         $articles = [
             [
-                'title' => 'How to Overcome Depression',
-                'content' => 'Depression is a common mental health disorder that affects millions of people worldwide. It can be difficult to overcome, but with the right treatment and support, you can learn to manage your symptoms and live a fulfilling life. In this article, we will discuss some strategies for overcoming depression and improving your mental health.',
+                'title' => 'Article 1',
+                'content' => 'This is the first article',
+                'image' => 'https://www.example.com/article1.jpg',
+                'category_id' => 1,
+                'author' => 'John Doe'
             ],
             [
-                'title' => 'Tips for Managing Anxiety',
-                'content' => 'Anxiety is a normal human emotion that everyone experiences from time to time. However, when anxiety becomes overwhelming and interferes with your daily life, it can be a sign of an anxiety disorder. In this article, we will discuss some tips for managing anxiety and reducing your symptoms.',
+                'title' => 'Article 2',
+                'content' => 'This is the second article',
+                'image' => 'https://www.example.com/article2.jpg',
+                'category_id' => 2,
+                'author' => 'Jane Doe'
             ],
             [
-                'title' => 'Understanding Bipolar Disorder',
-                'content' => 'Bipolar disorder is a mental health condition that causes extreme mood swings, ranging from manic episodes of high energy to depressive episodes of sadness and hopelessness. It can be challenging to live with bipolar disorder, but with the right treatment and support, you can manage your symptoms and lead a fulfilling life. In this article, we will discuss the symptoms, causes, and treatment options for bipolar disorder.',
+                'title' => 'Article 3',
+                'content' => 'This is the third article',
+                'image' => 'https://www.example.com/article3.jpg',
+                'category_id' => 3,
+                'author' => 'John Doe'
             ],
             [
-                'title' => 'Coping with Schizophrenia',
-                'content' => 'Schizophrenia is a serious mental health condition that affects how a person thinks, feels, and behaves. It can be challenging to cope with schizophrenia, but with the right treatment and support, you can manage your symptoms and live a fulfilling life. In this article, we will discuss some strategies for coping with schizophrenia and improving your mental health.',
+                'title' => 'Article 4',
+                'content' => 'This is the fourth article',
+                'image' => 'https://www.example.com/article4.jpg',
+                'category_id' => 4,
+                'author' => 'Jane Doe'
             ],
             [
-                'title' => 'Managing PTSD Symptoms',
-                'content' => 'Post-traumatic stress disorder (PTSD) is a mental health condition that can develop after experiencing a traumatic event. It can be challenging to manage PTSD symptoms, but with the right treatment and support, you can learn to cope with your symptoms and live a fulfilling life. In this article, we will discuss some strategies for managing PTSD symptoms and improving your mental health.',
-            ],
-            [
-                'title' => 'Coping with OCD',
-                'content' => 'Obsessive-compulsive disorder (OCD) is a mental health condition that causes unwanted thoughts and repetitive behaviors. It can be challenging to cope with OCD'
+                'title' => 'Article 5',
+                'content' => 'This is the fifth article',
+                'image' => 'https://www.example.com/article5.jpg',
+                'category_id' => 5,
+                'author' => 'John Doe'
             ],
         ];
 
