@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(QuestionSeeder::class);
         $this->call(AnswerSeeder::class);
         $this->call(ScoreSeeder::class);
-
-        // $role = Role::create(['name' => 'admin']);
+        $this->call(CategorySeeder::class);
+        $this->call(PodcastSeeder::class);
+        $this->call(ArticleSeeder::class);
+        $this->call(BreathSeeder::class);
     }
 }

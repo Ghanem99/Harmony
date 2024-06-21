@@ -3,17 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\UserAnswer;
 use App\Models\Lifestyle\Note;
 use App\Models\Lifestyle\Habit;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -28,6 +29,9 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'age',
+        'weight',
+        'mental_illness',
     ];
 
     /**
@@ -89,5 +93,10 @@ class User extends Authenticatable implements FilamentUser
     public function answers(): HasMany
     {
         return $this->hasMany(UserAnswer::class);
+    }
+
+    public function plan(): HasOne
+    {
+        return $this->hasOne(Plan::class);
     }
 }

@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\ChatController;
+use App\Http\Controllers\Api\V1\PlanController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\BreathController;
+use App\Http\Controllers\Api\V1\ArticleController;
+use App\Http\Controllers\Api\V1\PodcastController;
 use App\Http\Controllers\Api\V1\VrSessionController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
@@ -33,7 +37,19 @@ Route::group([
     Route::post('/sessions/{user}', [VrSessionController::class, 'store']);
     Route::get('/sessions', [VrSessionController::class, 'index']);
 
-    // to return the current auth user 
+    Route::post('plan/generate', [PlanController::class, 'generate']);
+    Route::get('plan', [PlanController::class, 'show']);
+
+    Route::get('articles', [ArticleController::class, 'index']);
+    Route::get('articles/{article}', [ArticleController::class, 'show']);
+
+    Route::get('podcasts', [PodcastController::class, 'index']);
+    Route::get('podcasts/{podcast}', [PodcastController::class, 'show']);
+
+    Route::get('breath', [BreathController::class, 'index']);
+    Route::get('breath/{breath}', [BreathController::class, 'show']);
+    
+
 });
 
 Route::apiResource('users', UserController::class);

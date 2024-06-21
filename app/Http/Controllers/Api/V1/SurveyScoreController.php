@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\V1;
+use App\Models\Plan;
 use App\Models\Score;
 use App\Models\Answer;
 use App\Models\Survey;
@@ -8,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class SurveyScoreController extends Controller
 {
@@ -41,5 +43,4 @@ class SurveyScoreController extends Controller
 
         return response()->json(['total_score' => $totalScore, 'level' => $level]);
     }
-
 }

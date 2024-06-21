@@ -19,7 +19,7 @@ class AnswerResource extends Resource
 {
     protected static ?string $model = Answer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Survey Management';
 
     public static function form(Form $form): Form
@@ -31,6 +31,10 @@ class AnswerResource extends Resource
                     ->required(),
                 TextInput::make('score')
                     ->label('Score')
+                    ->required(),
+                Forms\Components\BelongsToSelect::make('question_id')
+                    ->relationship('question', 'question')
+                    ->label('Question')
                     ->required(),
                 
             ]);
