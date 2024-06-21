@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SurveyResource\Pages;
-use App\Filament\Resources\SurveyResource\RelationManagers;
-use App\Models\Survey;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Survey;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\SurveyResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\SurveyResource\RelationManagers;
 
 class SurveyResource extends Resource
 {
@@ -29,6 +30,17 @@ class SurveyResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->label('Title')
+                    ->required(),
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->required(),
+                Forms\Components\Select::make('type')
+                    ->label('Type')
+                    ->options([
+                        'diagnose' => 'Diagnose',
+                        'personality' => 'Personality',
+                        'psychology' => 'Psychology',
+                    ])
                     ->required(),
                 // Forms\Components\DateTimePicker::make('start_date')
                 //     ->label('Start Date')
@@ -51,7 +63,15 @@ class SurveyResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('description')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('type')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -69,7 +89,7 @@ class SurveyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\QuestionsRelationManager::class,
         ];
     }
 
@@ -81,4 +101,6 @@ class SurveyResource extends Resource
             'edit' => Pages\EditSurvey::route('/{record}/edit'),
         ];
     }
+
+
 }

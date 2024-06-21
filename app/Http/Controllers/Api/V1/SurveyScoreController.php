@@ -22,6 +22,12 @@ class SurveyScoreController extends Controller
                                     ->where('question_id', $answer['question_id'])
                                     ->first();
             if ($selectedAnswer) {
+                $user->answers()->create([
+                    'survey_id' => $survey->id,
+                    'question_id' => $answer['question_id'],
+                    'answer_id' => $selectedAnswer->id,
+                ]);
+                
                 $totalScore += $selectedAnswer->score;
             } else {
                 return response()->json(['error' => 'Answer not found'], 404);

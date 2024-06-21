@@ -15,7 +15,8 @@ class SurveySeeder extends Seeder
     {
         Survey::create([
             'title' => 'Diagnose Survey',
-            'user_id' => 1,
+            'description' => 'This survey is used to diagnose the disease',
+            'type' => 'diagnose'
         ]);
     }
 }
