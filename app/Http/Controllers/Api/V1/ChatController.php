@@ -7,50 +7,44 @@ use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ChatController extends Controller
 {
     public function index()
     {
-        return Auth::user()->chats()->paginate(5);
+        return Auth::user()->chat()->get();
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'message' => 'required|string', 
-            'ai_response' => 'nullable|string'
-        ]); // ToDo: use FormRequest
+        ]); 
 
-        Chat::create([
+        $data = Chat::create([
             'user_id' => Auth::id(),
             'message' => $request->message, 
-            'ai_response' => 'AI: When I am ready to talk, I will. For now, I will just listen.'
+            'ai_response' => $this->aiResponse($request->message),
         ]);
-
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true
-            ]
-        ); // ToDo: use PusherService
-
-        $aiResponse = $this->aiResponse($request->message); 
-
-        $data = ['message' => $aiResponse, 'user_id' => Auth::id()];
-        $pusher->trigger('chat-channel', 'chat-event', $data);
 
         return response()->json([
             'message' => 'Message sent successfully', 
             'data' => $data
-        ], 201); // ToDo: use CustomResource
+        ], 201); 
     }
 
     public function aiResponse($message)
     {
-        return 'AI: ' . 'When I am ready to talk, I will. For now, I will just listen.';
+        $response = Http::post('https://api.openai.com/v1/ai-chat', [
+            'prompt' => $message,
+            'max_tokens' => 150,
+            'temperature' => 0.7,
+            'top_p' => 1,
+            'frequency_penalty' => 0,
+            'presence_penalty' => 0,
+        ]);
+
+        return $response->json()['choices'][0]['text'];
     }
 }
