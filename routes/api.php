@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PlanController;
-use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Api\V1\ChatController;
+use App\Http\Controllers\Api\V1\PlanController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\BreathController;
+use App\Http\Controllers\Api\V1\ArticleController;
+use App\Http\Controllers\Api\V1\PodcastController;
 use App\Http\Controllers\Api\V1\VrSessionController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
@@ -40,6 +42,13 @@ Route::group([
 
     Route::get('articles', [ArticleController::class, 'index']);
     Route::get('articles/{article}', [ArticleController::class, 'show']);
+
+    Route::get('podcasts', [PodcastController::class, 'index']);
+    Route::get('podcasts/{podcast}', [PodcastController::class, 'show']);
+
+    Route::get('breath', [BreathController::class, 'index']);
+    Route::get('breath/{breath}', [BreathController::class, 'show']);
+    
 
 });
 

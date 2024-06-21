@@ -8,10 +8,13 @@ return new class extends Migration {
 
 	public function up()
 	{
-		Schema::create('breath', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('video');
-			$table->string('description');
+		Schema::create('breaths', function(Blueprint $table) {
+			$table->id();
+			$table->string('title');
+			$table->string('duration')->nullable();
+			$table->string('frequency')->nullable();
+			$table->string('video')->nullable();
+			$table->string('image')->nullable();
 			$table->timestamps();
 		});
 	}
