@@ -56,8 +56,8 @@ class AnswerSeeder extends Seeder
 
         $questions = Question::all();
 
-        foreach ($questions as $index => $question) {
-            foreach ($answers[$index] as $answer) {
+        foreach ($questions as $key => $question) {
+            foreach ($answers[$key] as $answer) {
                 Answer::create([
                     'question_id' => $question->id,
                     'answer' => $answer['answer'],

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\VrSessionController;
@@ -36,6 +37,10 @@ Route::group([
 
     Route::post('plan/generate', [PlanController::class, 'generate']);
     Route::get('plan', [PlanController::class, 'show']);
+
+    Route::get('articles', [ArticleController::class, 'index']);
+    Route::get('articles/{article}', [ArticleController::class, 'show']);
+
 });
 
 Route::apiResource('users', UserController::class);
