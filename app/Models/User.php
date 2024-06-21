@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -64,9 +65,9 @@ class User extends Authenticatable implements FilamentUser
         return $this->belongsToMany(Survey::class);
     }
 
-    public function chats(): HasMany
+    public function chat(): HasOne
     {
-        return $this->hasMany(Chat::class);
+        return $this->hasOne(Chat::class);
     }
 
     public function memories(): HasMany
