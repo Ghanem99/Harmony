@@ -12,17 +12,12 @@ class Survey extends Model
 
     protected $fillable = [
         'title', 
-        'score', 
-        'user_id'
+        'description', 
+        'type'
     ];
-
-    public function user() 
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
-    }
+    }   
 }

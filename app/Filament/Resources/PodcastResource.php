@@ -67,7 +67,6 @@ class PodcastResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                // filter by category
                 Tables\Filters\SelectFilter::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name'),
